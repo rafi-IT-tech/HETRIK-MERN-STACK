@@ -11,5 +11,6 @@ db.mongoose = mongoose;
 db.url = config.url;
 
 db.user =require("./user.model")(mongoose)
+db.device =require("./device.model")(mongoose)
 
 module.exports = db;
