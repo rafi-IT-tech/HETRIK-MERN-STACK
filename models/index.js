@@ -12,5 +12,6 @@ db.url = config.url;
 
 db.user =require("./user.model")(mongoose)
 db.device =require("./device.model")(mongoose)
+db.room =require("./room.model")(mongoose)
 
 module.exports = db;
