@@ -6,6 +6,7 @@ const { roomRoute } = require("./room.route");
 const { dayaBangunanRoute } = require("./dayabangunan.route");
 const { paymentRoute } = require("./payment.route");
 const { tipsRoute } = require("./tips.route");
+const { usageRoute } = require("./usage.router");
 
 // const { todoRoute } = require("./todo.route");
 // const { authRoute } = require("./auth.route");
@@ -22,6 +23,7 @@ router.use("/dayaBangunan", dayaBangunanRoute);
 router.use("/room", roomRoute);
 router.use("/payment", paymentRoute);
 router.use("/tip",tipsRoute);
+router.use("/hitung", usageRoute);
 // router.use("/todo", todoRoute);
 // router.use("/auth", authRoute);
 
