@@ -11,6 +11,27 @@ exports.createDevice = async (req, res) => {
   }
 };
 
+
+// SEARCH - Cari perangkat berdasarkan nama
+exports.searchDevicesByName = async (req, res) => {
+  try {
+    const keyword = req.body.name;
+    if (!keyword) {
+      return res.status(400).json({ message: 'Name parameter is required for search' });
+    }
+
+    const devices = await Device.find({ device_name: { $regex: new RegExp(keyword, 'i') } });
+
+    if (devices.length === 0) {
+      return res.status(404).json({ message: 'No devices found with the given name' });
+    }
+
+    res.status(200).json(devices);
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+};
+
 // READ - Dapatkan semua perangkat
 exports.getAllDevices = async (req, res) => {
   try {

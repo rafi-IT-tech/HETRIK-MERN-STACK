@@ -10,6 +10,7 @@ router.get('/devices', authMiddleware,deviceController.getAllDevices);
 
 // READ - Dapatkan perangkat berdasarkan ID
 router.get('/devices/:deviceId', authMiddleware,deviceController.getDeviceById);
+router.post('/devices/search', authMiddleware,deviceController.searchDevicesByName);
 
 // UPDATE - Perbarui perangkat berdasarkan ID
 router.put('/devices/:deviceId', authMiddleware,deviceController.updateDeviceById);
