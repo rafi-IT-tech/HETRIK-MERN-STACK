@@ -76,9 +76,10 @@ exports.createUsage = async (req, res) => {
    
 
 // Determine BiayaDayaYangdigunakanHitung based on dayaBangunan
-let dayaBangunan = foundDayaBangunan.power_value; // Assuming power_value is the property containing the dayaBangunan value
+let dayaBangunan = foundDayaBangunan.powerCapacity; // Assuming power_value is the property containing the dayaBangunan value
 
-let BiayaDayaYangdigunakanHitung;
+console.log("Daya Bangunan ", dayaBangunan);
+let BiayaDayaYangdigunakanHitung =0;
 if (dayaBangunan === 900) {
   BiayaDayaYangdigunakanHitung = 1352 * selisihWaktu;
 } else if (dayaBangunan === 1200 || dayaBangunan === 1300 || dayaBangunan === 2200) {
