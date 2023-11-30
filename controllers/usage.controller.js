@@ -43,6 +43,7 @@ exports.createUsage = async (req, res) => {
     return res.status(400).json({ error: `User with ID ${UserID} not found.` });
   }
 
+  const foundDayaBangunan = await Dayabangunan.findById(BuildingPowerID);
      // Loop melalui setiap device untuk mendapatkan daya dan power
      for (const deviceItem of device) {
        const { device_id } = deviceItem;
@@ -50,7 +51,6 @@ exports.createUsage = async (req, res) => {
        // Cari device berdasarkan device_id
        const foundDevice = await Device.findById(device_id);
 
-      const foundDayaBangunan = await Dayabangunan.findById(BuildingPowerID);
 
        if (!foundDevice) {
          return res.status(400).json({ error: `Device with ID ${device_id} not found.` });
