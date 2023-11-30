@@ -4,6 +4,7 @@ const Device = require('../models/device.model');
 const Bangunan = require('../models/dayabangunan.model');
 const Room = require('../models/room.model');
 const User = require('../models/user.model');
+const Dayabangunan = require('../models/dayabangunan.model');
 
 // CREATE - Add new usage record with devices
 exports.createUsage = async (req, res) => {
@@ -48,10 +49,16 @@ exports.createUsage = async (req, res) => {
  
        // Cari device berdasarkan device_id
        const foundDevice = await Device.findById(device_id);
- 
+
+      const foundDayaBangunan = await Dayabangunan.findById(BuildingPowerID);
+
        if (!foundDevice) {
          return res.status(400).json({ error: `Device with ID ${device_id} not found.` });
        }
+
+       if (!foundDayaBangunan) {
+        return res.status(400).json({ error: `Building with ID ${BuildingPowerID} not found.` });
+      }
  
        // Ambil daya dan power dari device
        const { product_power } = foundDevice;
@@ -66,8 +73,21 @@ exports.createUsage = async (req, res) => {
      }
 
      let TotalDayaHabiskanHitung = (totalProductPower/ 1000)*selisihWaktu;
-     let BiayaDayaYangdigunakanHitung = 500 *selisihWaktu; // 500 diambil dari 500.000 / 1000 Kwh = Rp500 /Kwh 
+   
 
+// Determine BiayaDayaYangdigunakanHitung based on dayaBangunan
+let dayaBangunan = foundDayaBangunan.power_value; // Assuming power_value is the property containing the dayaBangunan value
+
+let BiayaDayaYangdigunakanHitung;
+if (dayaBangunan === 900) {
+  BiayaDayaYangdigunakanHitung = 1352 * selisihWaktu;
+} else if (dayaBangunan === 1200 || dayaBangunan === 1300 || dayaBangunan === 2200) {
+  BiayaDayaYangdigunakanHitung = 1444 * selisihWaktu;
+} else if (dayaBangunan >= 3500 && dayaBangunan <= 5500) {
+  BiayaDayaYangdigunakanHitung = 1669 * selisihWaktu;
+} else if (dayaBangunan === 6600) {
+  BiayaDayaYangdigunakanHitung = 1669 * selisihWaktu; // You can update this value if needed
+}
     // Create a usage record
     const newUsage = new Usage({
         UserID: foundUser._id, // Use the actual ID from the foundUser
