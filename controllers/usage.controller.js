@@ -8,7 +8,8 @@ const User = require('../models/user.model');
 // CREATE - Add new usage record with devices
 exports.createUsage = async (req, res) => {
   try {
-    const { UserID, RoomID, BuildingPowerID, WaktuMulai, WaktuSelesai, TotalDayaHabiskan, TarifEnergi, BiayaDayaDigunakan, Boros, device } = req.body;
+    // const { UserID, RoomID, BuildingPowerID, WaktuMulai, WaktuSelesai, TotalDayaHabiskan, TarifEnergi, BiayaDayaDigunakan, Boros, device } = req.body;
+    const { UserID,  BuildingPowerID, WaktuMulai, WaktuSelesai, TotalDayaHabiskan, TarifEnergi, BiayaDayaDigunakan, Boros, device } = req.body;
 
     // Validate if 'device' is an array
     if (!Array.isArray(device)) {
@@ -30,12 +31,12 @@ exports.createUsage = async (req, res) => {
      const powerDevice = [];
      let totalProductPower = 0; // Inisialisasi totalProductPower
   // Check if RoomID and UserID exist
-  const foundRoom = await Room.findById(RoomID);
+  // const foundRoom = await Room.findById(RoomID);
   const foundUser = await User.findById(UserID);
 
-  if (!foundRoom) {
-    return res.status(400).json({ error: `Room with ID ${RoomID} not found.` });
-  }
+  // if (!foundRoom) {
+  //   return res.status(400).json({ error: `Room with ID ${RoomID} not found.` });
+  // }
 
   if (!foundUser) {
     return res.status(400).json({ error: `User with ID ${UserID} not found.` });
@@ -70,7 +71,7 @@ exports.createUsage = async (req, res) => {
     // Create a usage record
     const newUsage = new Usage({
         UserID: foundUser._id, // Use the actual ID from the foundUser
-        RoomID: foundRoom._id, // Use the actual ID from the foundRoom
+        // RoomID: foundRoom._id, // Use the actual ID from the foundRoom
       BuildingPowerID,
       WaktuMulai,
       WaktuSelesai,
