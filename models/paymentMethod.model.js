@@ -10,6 +10,9 @@ const paymentMethodSchema = new mongoose.Schema({
   DayaBangunan: String,
 });
 
+// Drop the unique index on UserID if it exists
+paymentMethodSchema.index({ UserID: 1 }, { unique: false });
+
 const PaymentMethod = mongoose.model('PaymentMethod', paymentMethodSchema);
 
 module.exports = PaymentMethod;
