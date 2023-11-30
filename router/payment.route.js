@@ -4,6 +4,8 @@ const paymentMethodController = require('../controllers/paymentMethod.controller
 const { authMiddleware } = require("../middleware/auth");
 
 // Endpoint CRUD for payment methods
+router.post('/paymentMethods/checkPaymentMethodsExist', authMiddleware,paymentMethodController.checkPaymentMethodsExist);
+
 router.post('/paymentMethods', authMiddleware,paymentMethodController.createPaymentMethod);
 router.get('/paymentMethods', authMiddleware,paymentMethodController.getAllPaymentMethods);
 router.get('/paymentMethods/:paymentMethodId', authMiddleware,paymentMethodController.getPaymentMethodById);
