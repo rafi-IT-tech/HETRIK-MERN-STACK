@@ -11,6 +11,23 @@ exports.createPaymentMethod = async (req, res) => {
   }
 };
 
+
+exports.checkPaymentMethodsExist = async (req, res) => {
+  try {
+    const { userId } = req.body; // Extracting userId from the request body
+
+    // Check if payment methods exist for the specified user
+    const existingPaymentMethods = await PaymentMethod.find({ UserID: userId }).populate('UserID', 'username');
+    if (!existingPaymentMethods || existingPaymentMethods.length === 0) {
+      return res.status(404).json({ message: 'Payment methods not found for the specified user' });
+    }
+
+    res.status(200).json(existingPaymentMethods);
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+};
+
 // READ - Get all payment methods
 exports.getAllPaymentMethods = async (req, res) => {
   try {
