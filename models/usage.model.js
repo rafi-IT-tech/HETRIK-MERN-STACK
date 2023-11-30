@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 
 const usageSchema = new mongoose.Schema({
   UserID: { type: mongoose.Schema.Types.ObjectId, ref: 'User', required: true },
-  RoomID: { type: mongoose.Schema.Types.ObjectId, ref: 'Room', required: true },
+  // RoomID: { type: mongoose.Schema.Types.ObjectId, ref: 'Room', required: true },
   BuildingPowerID: { type: mongoose.Schema.Types.ObjectId, ref: 'BuildingPower', required: true },
   WaktuMulai: { type: Date, required: true },
   WaktuSelesai: { type: Date, required: true },
