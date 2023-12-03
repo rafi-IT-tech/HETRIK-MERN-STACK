@@ -68,7 +68,7 @@ exports.createUsage = async (req, res) => {
        powerDevice.push(product_power);
  
        // Tambahkan nilai product_power ke totalProductPower
-       totalProductPower += parseInt(product_power) || 0;
+       totalProductPower += parseFloat(product_power) || 0;
 
      }
 
@@ -105,7 +105,7 @@ if (dayaBangunan === 900) {
       BuildingPowerID,
       WaktuMulai,
       WaktuSelesai,
-      TotalDayaHabiskan : TotalDayaHabiskanHitung,
+      TotalDayaHabiskan : TotalDayaHabiskanHitung.toFixed(1),
       TarifEnergi : BiayaTarifEnergi,
       BiayaDayaDigunakan : BiayaDayaYangdigunakanHitung,
       Boros,
