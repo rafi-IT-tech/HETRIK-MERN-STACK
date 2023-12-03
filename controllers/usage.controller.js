@@ -106,7 +106,7 @@ if (dayaBangunan === 900) {
       WaktuMulai,
       WaktuSelesai,
       TotalDayaHabiskan : TotalDayaHabiskanHitung,
-      TarifEnergi : 500,
+      TarifEnergi : BiayaTarifEnergi,
       BiayaDayaDigunakan : BiayaDayaYangdigunakanHitung,
       Boros,
       device, // Assign the array of devices
