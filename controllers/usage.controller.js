@@ -167,6 +167,22 @@ exports.updateUsageById = async (req, res) => {
   }
 };
 
+// READ - Get all usage records for a specific user by UserID
+exports.getAllByUserId = async (req, res) => {
+  try {
+    const { userID } = req.params;
+
+    const usageRecords = await Usage.find({ UserID: userID })
+      .populate('UserID', 'username');
+      // .populate('RoomID', 'room_name');
+
+    res.status(200).json(usageRecords);
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+};
+
+
 // DELETE - Delete usage record by ID
 exports.deleteUsageById = async (req, res) => {
   try {
