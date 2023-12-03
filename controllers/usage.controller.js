@@ -68,7 +68,7 @@ exports.createUsage = async (req, res) => {
        powerDevice.push(product_power);
  
        // Tambahkan nilai product_power ke totalProductPower
-       totalProductPower += parseFloat(product_power) || 0;
+       totalProductPower += parseInt(product_power) || 0;
 
      }
 
