@@ -118,7 +118,7 @@ exports.getAllUsage = async (req, res) => {
   try {
     const usageRecords = await Usage.find()
       .populate('UserID', 'username')
-      .populate('RoomID', 'room_name');
+      // .populate('RoomID', 'room_name');
 
     res.status(200).json(usageRecords);
   } catch (error) {
