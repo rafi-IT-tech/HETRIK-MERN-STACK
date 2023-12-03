@@ -80,14 +80,23 @@ let dayaBangunan = foundDayaBangunan.powerCapacity; // Assuming power_value is t
 
 console.log("daya Bangunan ", dayaBangunan);
 let BiayaDayaYangdigunakanHitung = 0;
+let BiayaTarifEnergi = 0;
+
 if (dayaBangunan === 900) {
   BiayaDayaYangdigunakanHitung = 1352 * selisihWaktu;
+  BiayaTarifEnergi = 1352;
 } else if (dayaBangunan === 1200 || dayaBangunan === 1300 || dayaBangunan === 2200) {
   BiayaDayaYangdigunakanHitung = 1444 * selisihWaktu;
+  BiayaTarifEnergi = 1444;
+
 } else if (dayaBangunan >= 3500 && dayaBangunan <= 5500) {
   BiayaDayaYangdigunakanHitung = 1669 * selisihWaktu;
+  BiayaTarifEnergi = 1669;
+
 } else if (dayaBangunan === 6600) {
   BiayaDayaYangdigunakanHitung = 1669 * selisihWaktu; // You can update this value if needed
+  BiayaTarifEnergi = 1669;
+
 }
     // Create a usage record
     const newUsage = new Usage({
